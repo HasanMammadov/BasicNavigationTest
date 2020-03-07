@@ -5,7 +5,6 @@ public class StringUtility {
 
     public static void main(String[] args) {
 
-        verifyEquals("alma","armud");
     }
 
     public static void verifyEquals(String expected,String actual){
