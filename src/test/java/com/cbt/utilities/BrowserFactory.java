@@ -28,7 +28,7 @@ public class BrowserFactory {
         String osName = System.getProperty("os.name");
 
         if(osName.contains("Mac")&&browser.equalsIgnoreCase("Chrome")){
-            WebDriverManager.chromedriver().setup();
+            WebDriverManager.chromedriver().version("79").setup();
             return  new ChromeDriver();
         }else if(osName.contains("Mac")&&browser.equalsIgnoreCase("Opera")){
             WebDriverManager.operadriver().setup();

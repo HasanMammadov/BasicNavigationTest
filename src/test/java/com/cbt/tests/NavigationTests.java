@@ -28,7 +28,7 @@ public class NavigationTests {
        String titleGogogle2= driver.getTitle();
 
        driver.navigate().forward();
-        String titleEtsy2= driver.getTitle();
+        String titleEtsy2 = driver.getTitle();
 
         StringUtility.verifyEquals(titleGoogle,titleGogogle2);
         StringUtility.verifyEquals(titleEtsy,titleEtsy2);
