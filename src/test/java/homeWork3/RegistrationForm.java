@@ -34,7 +34,6 @@ public class RegistrationForm {
 @Test
 public void dateOfBirthWarningMessage(){
 
-    driver.findElement(By.linkText("Registration Form")).click();
 
     driver.findElement(dateBirthBy).sendKeys("wrong_dob");
     String expected = "The date of birth is not valid";
@@ -46,8 +45,7 @@ public void dateOfBirthWarningMessage(){
 }
 @Test
 public void programmingLanguages() throws InterruptedException {
-    driver.findElement(By.linkText("Registration Form")).click();
-    Thread.sleep(3000);
+
     WebElement javaScript = driver.findElement(By.cssSelector("#inlineCheckbox3"));
     Assert.assertTrue(javaScript.isDisplayed());
 
@@ -59,6 +57,20 @@ public void programmingLanguages() throws InterruptedException {
     WebElement cpluss = driver.findElement(By.cssSelector("[id='inlineCheckbox1']"));
     Assert.assertTrue(cpluss.isDisplayed());
 
+
+}
+@Test
+public void warningMessageCharactersLong() throws InterruptedException {
+
+    driver.findElement(By.cssSelector("[name='firstname']")).sendKeys("a");
+    Thread.sleep(3000);
+     String expected = "first name must be more than 2 and less than 64 characters long";
+     WebElement warning = driver.findElement(By.xpath("//small[text()='first name must be more than 2 and less than 64 characters long']"));
+
+     String actual= warning.getText();
+
+     Assert.assertTrue(warning.isDisplayed());
+     Assert.assertEquals(actual,expected);
 
 }
 
@@ -78,6 +90,7 @@ public void programmingLanguages() throws InterruptedException {
         driver = new ChromeDriver();
         driver.get(url);
         driver.manage().window().maximize();
+        driver.findElement(By.linkText("Registration Form")).click();
 
     }
 
