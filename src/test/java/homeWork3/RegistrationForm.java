@@ -62,7 +62,7 @@ public void programmingLanguages() throws InterruptedException {
 @Test
 public void warningMessageFistName() throws InterruptedException {
 
-    driver.findElement(By.cssSelector("[name='firstname']")).sendKeys("a");
+    driver.findElement(firstNameBy).sendKeys("a");
     Thread.sleep(3000);
      String expected = "first name must be more than 2 and less than 64 characters long";
      WebElement warning = driver.findElement(By.xpath("//small[text()='first name must be more than 2 and less than 64 characters long']"));
@@ -72,6 +72,20 @@ public void warningMessageFistName() throws InterruptedException {
      Assert.assertTrue(warning.isDisplayed());
      Assert.assertEquals(actual,expected);
 
+}
+@Test
+public void warningMessageLastName(){
+
+    driver.findElement(lastNameBy).sendKeys("a");
+   WebElement warning = driver.findElement(By.xpath("//small[text()='The last name must be more than 2 and less than 64 characters long']"));
+
+
+    String expected ="The last name must be more than 2 and less than 64 characters long";
+    String actual = warning.getText();
+    System.out.println(actual);
+
+    Assert.assertEquals(actual,expected);
+    Assert.assertTrue(warning.isDisplayed());
 }
 
 
