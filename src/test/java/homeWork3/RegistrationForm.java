@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,15 +21,15 @@ public class RegistrationForm {
     private By lastNameBy  = (By.name("lastname"));
     private By userNameBy  = (By.xpath("//input[@name='username']"));
     private By emailBy  = (By.xpath("//input[@name='email']"));
-    private By password  = (By.name("password"));
+    private By passwordBy  = (By.name("password"));
     private By phoneBy  = (By.xpath("//input[@name='phone']"));
     private By maleGender  = (By.xpath("//input[@value='male']"));
     private By FemaleGender  = (By.xpath("//input[@value='Female']"));
     private By dateBirthBy  = (By.cssSelector("[name='birthday']"));
     private By departmentBy  = (By.cssSelector("[name='department']"));
-    private By jobTitleBY  = (By.xpath("[@name='job_title']"));
+    private By jobTitleBY  = (By.cssSelector("[name='job_title']"));
     private By javaBY  = (By.cssSelector("[value='java']"));
-    private By  javaScriptBy = (By.xpath("[value='javascript']"));
+    private By  javaScriptBy = (By.cssSelector("[value='javascript']"));
     private By submit  = (By.id("wooden_spoon"));
 
 @Test
@@ -86,6 +87,40 @@ public void warningMessageLastName(){
 
     Assert.assertEquals(actual,expected);
     Assert.assertTrue(warning.isDisplayed());
+}
+@Test
+public void successMessage() throws InterruptedException {
+    driver.findElement(firstNameBy).sendKeys("Hasan");
+    driver.findElement(lastNameBy).sendKeys("Mammadov");
+    driver.findElement(userNameBy).sendKeys("hasanmammadov");
+    driver.findElement(emailBy).sendKeys("hasan@gmail.com");
+    driver.findElement(passwordBy).sendKeys("98765432211");
+    driver.findElement(phoneBy).sendKeys("347-830-0367");
+    driver.findElement(maleGender).click();
+    driver.findElement(dateBirthBy).sendKeys("11/15/1985");
+
+    WebElement dep = driver.findElement(departmentBy);
+    Select department = new Select(dep);
+    department.selectByVisibleText("Accounting Office");
+
+Thread.sleep(3000);
+
+    WebElement jobT = driver.findElement(jobTitleBY);
+    Select job = new Select(jobT);
+    job.selectByVisibleText("Manager");
+
+    Thread.sleep(3000);
+
+
+    driver.findElement(javaScriptBy).click();
+    driver.findElement(javaBY).click();
+
+    driver.findElement(submit).click();
+
+    String actual = driver.findElement(By.tagName("p")).getText();
+    String expected= "You've successfully completed registration!";
+
+    Assert.assertEquals(actual,expected);
 }
 
 
