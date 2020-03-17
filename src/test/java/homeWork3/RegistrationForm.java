@@ -10,6 +10,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.swing.text.Utilities;
+
 public class RegistrationForm {
 
     private WebDriver driver;
@@ -40,6 +42,23 @@ public void dateOfBirthWarningMessage(){
     WebElement warningMesage =driver.findElement(By.xpath("//small[text()='The date of birth is not valid']"));
     Assert.assertTrue(warningMesage.isDisplayed());
     Assert.assertEquals(actual,expected);
+
+}
+@Test
+public void programmingLanguages() throws InterruptedException {
+    driver.findElement(By.linkText("Registration Form")).click();
+    Thread.sleep(3000);
+    WebElement javaScript = driver.findElement(By.cssSelector("#inlineCheckbox3"));
+    Assert.assertTrue(javaScript.isDisplayed());
+
+    WebElement java = driver.findElement(By.id("inlineCheckbox2"));
+    String javatext = java.getText();
+
+    Assert.assertTrue(java.isDisplayed());
+
+    WebElement cpluss = driver.findElement(By.cssSelector("[id='inlineCheckbox1']"));
+    Assert.assertTrue(cpluss.isDisplayed());
+
 
 }
 
