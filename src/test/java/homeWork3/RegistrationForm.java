@@ -60,7 +60,7 @@ public void programmingLanguages() throws InterruptedException {
 
 }
 @Test
-public void warningMessageCharactersLong() throws InterruptedException {
+public void warningMessageFistName() throws InterruptedException {
 
     driver.findElement(By.cssSelector("[name='firstname']")).sendKeys("a");
     Thread.sleep(3000);
