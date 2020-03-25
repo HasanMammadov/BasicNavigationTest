@@ -23,19 +23,21 @@ public class TodaysDate {
 
 
 
-       WebElement year = driver.findElement(By.xpath("//select//option[@value='2020']"));
-       WebElement month = driver.findElement(By.xpath("//select//option[text()='March']"));
-       WebElement day=  driver.findElement(By.xpath("//select//option[text()='24']"));
+       WebElement year = driver.findElement(By.id("year"));
+       WebElement month = driver.findElement(By.id("month"));
+       WebElement day=  driver.findElement(By.id("day"));
 
 
 
-       String actualYear = year.getText();
-    String actualMonth = month.getText();
-    String actualDay = day.getText();
+       String actualYear = year.getAttribute("value");
+    String actualMonth = month.getAttribute("value");
+    int newMonth = Integer.parseInt(actualMonth)+1;
+    actualMonth=String.valueOf(newMonth);
+    String actualDay = day.getAttribute("value");
 
     //Read more: https://www.java67.com/2016/12/how-to-get-current-day-month-year-from-date-in-java8.html#ixzz6He3wEPLP
     String expectedYear = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
-    String expectedMonth = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM"));
+    String expectedMonth = LocalDate.now().format(DateTimeFormatter.ofPattern("M"));
     String expectedDay = LocalDate.now().format(DateTimeFormatter.ofPattern("dd"));
 
     Assert.assertEquals(actualDay,expectedDay);
