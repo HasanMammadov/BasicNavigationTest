@@ -24,9 +24,10 @@ public class AmazonDepartmentSort {
 
     String actual = driver.findElement(By.cssSelector("[class='nav-search-label']")).getText();
     String expected = "All";
+
     Assert.assertEquals(actual,expected);
 
-int notSorted=0;
+        int notSorted=0;
     for (int i = 0; i <allDepartments.size()-1 ; i++) {
         String value = allDepartments.get(i).getText();
         String nextValue = allDepartments.get(i+1).getText();
